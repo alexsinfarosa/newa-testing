@@ -7,14 +7,14 @@ import SEO from "../components/seo"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <div>
-      <a href="#" className="mx-3 block text-red-600 hover:bg-gray-200">
-        one
-      </a>
-      <a href="#" className="mx-3 block text-red-600">
-        two
-      </a>
-    </div>
+    <section>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+        tempore tempora dolor soluta incidunt! Cumque doloremque velit
+        explicabo, quis totam dignissimos debitis quas a itaque rerum? Ducimus
+        modi tempore laboriosam!
+      </p>
+    </section>
   </Layout>
 )
 
