@@ -5,8 +5,13 @@ import { isAuthenticated, getProfile, login, logout } from "../utils/auth.js"
 
 import { Link } from "gatsby"
 
+import Todo from "../components/todo"
+
 const Home = ({ user }) => (
-  <h2 className="text-4xl">Hi, {user.name ? user.name : "friend"}!</h2>
+  <div>
+    <h2 className="text-4xl">Hi, {user.name ? user.name : "friend"}!</h2>
+    <Todo />
+  </div>
 )
 const Settings = () => <h2 className="text-4xl">Settings Page</h2>
 const Billing = () => <h2 className="text-4xl">Billing Page</h2>
@@ -41,10 +46,6 @@ function Account() {
         >
           Log out
         </a>
-        <a
-          className="mr-4 text-blue-700 font-bold"
-          href="#profile"
-        >{`Hello ${user.nickname}!!!!`}</a>
       </nav>
 
       <Router>
