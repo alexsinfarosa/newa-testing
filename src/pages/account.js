@@ -8,7 +8,7 @@ import { Link } from "gatsby"
 import Todo from "../components/todo"
 
 const Home = ({ user }) => (
-  <div>
+  <div className="m-4">
     <h2 className="text-4xl">Hi, {user.name ? user.name : "friend"}!</h2>
     <Todo />
   </div>
