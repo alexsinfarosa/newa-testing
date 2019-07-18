@@ -5,12 +5,12 @@ import { isAuthenticated, getProfile, login, logout } from "../utils/auth.js"
 
 import { Link } from "gatsby"
 
-import Todo from "../components/todo"
+import User from "../components/user"
 
 const Home = ({ user }) => (
   <div className="m-4">
     <h2 className="text-4xl">Hi, {user.name ? user.name : "friend"}!</h2>
-    <Todo />
+    <User />
   </div>
 )
 const Settings = () => <h2 className="text-4xl">Settings Page</h2>
