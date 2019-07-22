@@ -39,11 +39,19 @@ const Users = () => {
       .then(res => res.json())
       .catch(err => console.log(err))
 
-    setUsers(fetchedUsers.data.allUsers)
+    return fetchedUsers.data.allUsers
   }
 
   React.useEffect(() => {
-    getUsers()
+    let isSubscribed = true
+
+    getUsers().then(users => {
+      if (isSubscribed) {
+        setUsers(users)
+      }
+    })
+
+    return () => (isSubscribed = false)
   }, [])
 
   return (

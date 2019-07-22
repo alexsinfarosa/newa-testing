@@ -45,8 +45,8 @@ const users = [
 ]
 
 const models = [
-  { id: 1, name: "Apple Maggot", users: [1, 3] },
-  { id: 2, name: "Cranberry model", users: [1, 2] },
+  { id: 1, name: "Apple Maggot" },
+  { id: 2, name: "Cranberry model" },
 ]
 
 const stations = [
@@ -92,8 +92,9 @@ const resolvers = {
     },
   },
   Model: {
-    names: (root, args, context) => {
-      return models.filter(m => m)
+    name: (root, args, context) => {
+      console.log(root)
+      return "ciccio"
     },
   },
 }
