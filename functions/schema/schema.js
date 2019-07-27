@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server-lambda")
+const uuidv4 = require("uuid/v4")
 
 const typeDefs = gql`
   type Query {
@@ -10,8 +11,22 @@ const typeDefs = gql`
     modelByName(name: String!): Model
   }
 
+  type Mutation {
+    createUser(name: String!, email: String!, role: String!): User!
+    addStationToUser(
+      network: String!
+      lon: Float!
+      state: String!
+      elev: Int
+      lat: Float!
+      id: String!
+      name: String!
+      userId: ID!
+    ): Station!
+  }
+
   type User {
-    id: Int!
+    id: ID!
     name: String!
     email: String!
     role: String!
@@ -25,6 +40,7 @@ const typeDefs = gql`
   type Model {
     name: String!
     isSeason: Boolean
+    developer: String
   }
 
   type Station {
@@ -38,11 +54,7 @@ const typeDefs = gql`
   }
 `
 
-const users = [
-  { id: 1, name: "Alex", email: "Alex@example.com", role: "dev" },
-  { id: 2, name: "Dan", email: "Dan@example.com", role: "admin" },
-  { id: 3, name: "Joe", email: "Joe@example.com", role: "user" },
-]
+const users = []
 
 const models = [
   { id: 1, name: "Apple Maggot" },
@@ -91,10 +103,51 @@ const resolvers = {
       return models.find(d => d.name === args.name) || "NOTFOUND"
     },
   },
-  Model: {
-    name: (root, args, context) => {
-      console.log(root)
-      return "ciccio"
+  Mutation: {
+    createUser: (root, args, context) => {
+      const emailTaken = users.some(user => user.email === args.email)
+
+      if (emailTaken) {
+        throw new Error("Email already taken.")
+      }
+
+      const user = {
+        id: uuidv4(),
+        name: args.name,
+        email: args.email,
+        role: args.role,
+      }
+      users.push(user)
+      return user
+    },
+    addStationToUser: (root, args, context) => {
+      console.log(args)
+      const userIndex = users.findIndex(user => user.id === args.userId)
+
+      if (userIndex === -1) {
+        throw new Error("User not found.")
+      }
+      console.log(userIndex)
+      const stationExist = users[userIndex].stations.some(
+        stn => stn.id === args.id
+      )
+      console.log(stationExist)
+
+      const { userId, ...station } = args
+      console.log(station)
+      if (!stationExist) {
+        users[userIndex].stations.push(station)
+      }
+
+      return args
+    },
+  },
+  User: {
+    stations: (root, args, context) => {
+      return root.stations || []
+    },
+    models: (root, args, context) => {
+      return root.models || []
     },
   },
 }
