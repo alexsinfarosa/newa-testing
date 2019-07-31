@@ -1,0 +1,32 @@
+type Station {
+  network: String!
+  lon: Float!
+  state: String!
+  elev: Int
+  lat: Float!
+  id: String!
+  name: String!
+  users: [User]!
+}
+
+type User {
+  name: String!
+  email: String!
+  role: String!
+  lat: Float
+  lon: Float
+  state: String
+  stations: [Station]!
+  models: [Model]!
+}
+
+type Model {
+  name: String!
+  isSeason: Boolean
+  developer: String
+  users: [User]!
+}
+
+type Query {
+  allStations: [Station!]
+}
