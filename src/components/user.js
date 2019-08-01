@@ -3,11 +3,19 @@ import React from "react"
 const Users = () => {
   const USERS_QUERY = `
   query {
-    allUsers {
-      name
-      id
-      email
-      role
+    allUsers{
+      data {
+        name
+        email
+        state
+        role
+        _id
+        stations {
+          name
+          network
+          id
+        }
+      }
     }
   }
   `
@@ -24,7 +32,7 @@ const Users = () => {
   // }
   // `
 
-  const url = `/.netlify/functions/schema`
+  const url = `/.netlify/functions/schema2`
 
   const opts = {
     method: "POST",
@@ -32,14 +40,14 @@ const Users = () => {
     body: JSON.stringify({ query: USERS_QUERY }),
   }
 
-  const [users, setUsers] = React.useState(null)
+  const [users, setUsers] = React.useState([])
 
   const getUsers = async () => {
     const fetchedUsers = await fetch(url, opts)
       .then(res => res.json())
       .catch(err => console.log(err))
 
-    return fetchedUsers.data.allUsers
+    return fetchedUsers.data.allUsers.data
   }
 
   React.useEffect(() => {
@@ -58,9 +66,9 @@ const Users = () => {
     <div>
       <h3 className="my-4 text-3xl">Users:</h3>
 
-      {users === null && <div className="text-gray-700">Loading...</div>}
+      {users.length === 0 && <div className="text-gray-700">Loading...</div>}
 
-      {users && (
+      {users.length !== 0 && (
         <ul className="list-disc">
           {users.map((user, i) => {
             return (

@@ -6,7 +6,7 @@ type Station {
   lat: Float!
   id: String!
   name: String!
-  users: [User]!
+  users: [User]
 }
 
 type User {
@@ -16,17 +16,19 @@ type User {
   lat: Float
   lon: Float
   state: String
-  stations: [Station]!
-  models: [Model]!
+  stations: [Station]
+  models: [Model]
 }
 
 type Model {
   name: String!
   isSeason: Boolean
   developer: String
-  users: [User]!
+  users: [User]
 }
 
 type Query {
   allStations: [Station!]
+  allUsers: [User!]
+  allModels: [Model!]
 }
