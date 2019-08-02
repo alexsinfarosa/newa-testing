@@ -72,11 +72,9 @@ const Users = () => {
         <ul className="list-disc">
           {users.map((user, i) => {
             return (
-              <li key={i} className="list-inside">
-                <span className="mr-2">{user.name} - </span>
-                <span className="mr-2">{user.email} - </span>
-                <span className="mr-2">{user.role}</span>
-              </li>
+              <pre key={user._id} className="text-green-700">
+                {JSON.stringify(user, null, 2)}
+              </pre>
             )
           })}
         </ul>
