@@ -10,7 +10,7 @@ import User from "../components/user"
 const Home = ({ user }) => (
   <div className="m-4">
     <h2 className="text-4xl">Hi, {user.name ? user.name : "friend"}!</h2>
-    <User />
+    <User user={user} />
   </div>
 )
 const Settings = () => <h2 className="text-4xl">Settings Page</h2>

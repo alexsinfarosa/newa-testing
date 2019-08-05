@@ -1,6 +1,7 @@
 import React from "react"
 
-const Users = () => {
+const Users = user => {
+  console.log(user.user)
   const USERS_QUERY = `
   query {
     allUsers{
@@ -64,6 +65,9 @@ const Users = () => {
 
   return (
     <div>
+      <h3 className="my-4 text-3xl">Authenticated User:</h3>
+      <pre key={user.sub}>{JSON.stringify(user, null, 2)}</pre>
+
       <h3 className="my-4 text-3xl">Users:</h3>
 
       {users.length === 0 && <div className="text-gray-700">Loading...</div>}

@@ -15,6 +15,9 @@ type User {
   role: String!
   lat: Float
   lon: Float
+  picture: String
+  updated_at: String
+  sub: String
   state: String
   stations: [Station]
   models: [Model]
