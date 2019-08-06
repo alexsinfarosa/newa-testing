@@ -16,8 +16,9 @@ type User {
   lat: Float
   lon: Float
   picture: String
-  updated_at: String
-  sub: String
+  updated_at: String!
+  #Auth0 user id
+  sub: String!
   state: String
   stations: [Station]
   models: [Model]
