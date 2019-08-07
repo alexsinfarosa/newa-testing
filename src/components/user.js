@@ -13,7 +13,8 @@ const Users = user => {
         lon
         lat
         updated_at
-        sub
+        auth0_id: sub
+        _id
         stations {
           network
           name
@@ -77,7 +78,7 @@ const Users = user => {
 
       <h3 className="my-4 text-3xl">All Users in Fauna Database:</h3>
 
-      {users.length === 0 && <div className="text-gray-700">No Users</div>}
+      {users.length === 0 && <div className="text-gray-700">Loading...</div>}
 
       {users.length !== 0 && (
         <ul className="list-disc">

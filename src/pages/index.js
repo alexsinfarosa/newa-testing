@@ -4,12 +4,12 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import { isBrowser } from "../utils/utils"
+
 const IndexPage = () => {
   const [lat, setLat] = React.useState(null)
   const [lng, setLng] = React.useState(null)
   const [errorMsg, setErrorMsg] = React.useState("")
-
-  const isBrowser = typeof window !== "undefined"
 
   React.useEffect(() => {
     if (isBrowser) {
@@ -17,7 +17,6 @@ const IndexPage = () => {
         // geolocation is supported
         navigator.geolocation.getCurrentPosition(
           position => {
-            console.log(position)
             setLat(position.coords.latitude)
             setLng(position.coords.longitude)
           },

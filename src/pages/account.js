@@ -9,7 +9,14 @@ import User from "../components/user"
 
 const Home = ({ user }) => (
   <div className="m-4">
-    <h2 className="text-4xl">Hi, {user.name ? user.name : "friend"}!</h2>
+    <div className="flex">
+      <h2 className="text-4xl mr-4">Hi, {user.name ? user.name : "friend"}!</h2>
+      <img
+        src={user.picture}
+        alt={`${user.name} profile picture`}
+        className="h-16 w-16 rounded-full "
+      />
+    </div>
     <User user={user} />
   </div>
 )

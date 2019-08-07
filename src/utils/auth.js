@@ -1,7 +1,7 @@
 import auth0 from "auth0-js"
 import { navigate } from "gatsby"
 
-const isBrowser = typeof window !== "undefined"
+import { isBrowser } from "./utils"
 
 const auth = isBrowser
   ? new auth0.WebAuth({
