@@ -8,7 +8,7 @@ import { isBrowser } from "../utils/utils"
 
 const IndexPage = () => {
   const [lat, setLat] = React.useState(null)
-  const [lng, setLng] = React.useState(null)
+  const [lon, setLon] = React.useState(null)
   const [errorMsg, setErrorMsg] = React.useState("")
 
   React.useEffect(() => {
@@ -18,7 +18,7 @@ const IndexPage = () => {
         navigator.geolocation.getCurrentPosition(
           position => {
             setLat(position.coords.latitude)
-            setLng(position.coords.longitude)
+            setLon(position.coords.longitude)
           },
           error => {
             setErrorMsg(error.message)
@@ -49,8 +49,13 @@ const IndexPage = () => {
           sequi! Odit!
         </p>
 
+        {!lat && !errorMsg && (
+          <p className="w-1/2 m-auto mt-4 text-justify text-xl text-orange-600">
+            Loading...
+          </p>
+        )}
         {lat && (
-          <p className="w-1/2 m-auto mt-4 text-justify text-xl text-orange-600">{`lat: ${lat}, lng: ${lng}`}</p>
+          <p className="w-1/2 m-auto mt-4 text-justify text-xl text-orange-600">{`lat: ${lat}, lng: ${lon}`}</p>
         )}
 
         {errorMsg && (

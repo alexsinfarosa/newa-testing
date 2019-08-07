@@ -20,15 +20,18 @@ type User {
   #Auth0 user id
   sub: String!
   state: String
+  locations: []
   stations: [Station]
   models: [Model]
 }
 
 type Model {
   name: String!
-  isSeason: Boolean
-  developer: String
-  users: [User]
+  category: String!
+  commodity: String!
+  type: String!
+  inSeason: Boolean
+  developedBy: String
 }
 
 type Query {
