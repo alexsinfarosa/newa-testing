@@ -13,7 +13,7 @@ const Home = ({ user }) => (
       <h2 className="text-4xl mr-4">Hi, {user.name ? user.name : "friend"}!</h2>
       <img
         src={user.picture}
-        alt={`${user.name} profile picture`}
+        alt={`${user.name} profile`}
         className="h-16 w-16 rounded-full "
       />
     </div>

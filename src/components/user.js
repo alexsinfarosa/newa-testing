@@ -84,7 +84,7 @@ const Users = user => {
         <ul className="list-disc">
           {users.map(user => {
             return (
-              <pre key={user.sub} className="text-green-700">
+              <pre key={user._id} className="text-green-700">
                 {JSON.stringify(user, null, 2)}
               </pre>
             )
