@@ -22,7 +22,7 @@ const Users = user => {
         }
         models {
           name
-          isSeason
+
         }
       }
     }

@@ -38,7 +38,7 @@ type Model {
 
 enum ModelCategory {
   FRUIT
-  VEGETABLES
+  VEGETABLE
   FIELD
   CROP
   WEATHER
