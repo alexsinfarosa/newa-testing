@@ -21,10 +21,22 @@ type User {
   sub: String!
   state: String
   stations: [Station]
-  models: [Model]
+  # models: [Model]
 }
 
-type Model {
+# type Model {
+#   name: String!
+#   category: [ModelCategory!]
+#   commodity: String!
+#   type: String!
+#   # inSeason: Boolean
+#   seasonStartDate: String
+#   seasonEndDate: String
+#   developedBy: String
+#   users: [User]
+# }
+
+type PollenTubeGrowthModel {
   name: String!
   category: [ModelCategory!]
   commodity: String!
@@ -33,7 +45,11 @@ type Model {
   seasonStartDate: String
   seasonEndDate: String
   developedBy: String
-  users: [User]
+  block: String
+  styleLength: Float
+  thinningSprayDate1: String
+  thinningSprayDate2: String
+  thinningSprayDate3: String
 }
 
 enum ModelCategory {
@@ -47,5 +63,5 @@ enum ModelCategory {
 type Query {
   allStations: [Station!]
   allUsers: [User!]
-  allModels: [Model!]
+  # allModels: [Model!]
 }

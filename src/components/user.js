@@ -20,13 +20,10 @@ const Users = user => {
           name
           _id
         }
-        models {
-          name
-
-        }
       }
     }
   }
+
   `
 
   // const USERS_MUTATION = `
