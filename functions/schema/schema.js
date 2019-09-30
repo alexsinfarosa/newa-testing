@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server-lambda")
-const uuidv4 = require("uuid/v4")
+import { isAuthenticated, getProfile, login } from "../../src/utils/auth.js"
 
 const typeDefs = gql`
   type Query {
@@ -105,18 +105,14 @@ const resolvers = {
   },
   Mutation: {
     createUser: (root, args, context) => {
-      const emailTaken = users.some(user => user.email === args.email)
-
-      if (emailTaken) {
-        throw new Error("Email already taken.")
+      if (!isAuthenticated()) {
+        throw new Error("User has not been authenticated.")
       }
 
-      const user = {
-        id: uuidv4(),
-        name: args.name,
-        email: args.email,
-        role: args.role,
-      }
+      console.log(login())
+      const user = getProfile()
+      console.log(user)
+
       users.push(user)
       return user
     },

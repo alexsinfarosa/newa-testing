@@ -17,7 +17,7 @@ const Home = ({ user }) => (
         className="h-16 w-16 rounded-full "
       />
     </div>
-    <User user={user} />
+    {/* <User user={user} /> */}
   </div>
 )
 const Settings = () => <h2 className="text-4xl">Settings Page</h2>
